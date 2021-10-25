@@ -1,1 +1,1 @@
-# strictlysocial
+# Strictly Social
