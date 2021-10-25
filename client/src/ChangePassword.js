@@ -1,0 +1,109 @@
+import React, { Component } from "react";
+import axios from "axios";
+const qs = require("qs");
+export default class ChangePassword extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			old: "",
+			new: "",
+			new_confirm: "",
+		};
+
+		this.handleOldChange = this.handleOldChange.bind(this);
+		this.handleNewChange = this.handleNewChange.bind(this);
+		this.handleNewConfirmChange = this.handleNewConfirmChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleOldChange(e) {
+		this.setState(() => {
+			return { ...this.state, old: e.target.value };
+		});
+	}
+
+	handleNewChange(e) {
+		this.setState(() => {
+			return { ...this.state, new: e.target.value };
+		});
+	}
+
+	handleNewConfirmChange(e) {
+		this.setState(() => {
+			return { ...this.state, new_confirm: e.target.value };
+		});
+	}
+
+	async handleSubmit() {
+		/*
+		Todo:
+		1. Check on the client side if both new password and old password match
+		2. If yes,
+			1. make an api call to change password
+		3. Else,
+			1. throw an error
+		*/
+
+		try {
+			//checking if passwords match [new and new_confirm]
+			if (this.state.new !== this.state.new_confirm) {
+				//they dont match
+				throw Error("passwords dont match");
+			}
+
+			//making an api call to change the password
+			await axios({
+				method: "post",
+				url: "/password",
+				data: qs.stringify({
+					password: this.state.old,
+					newPassword: this.state.new,
+				}),
+				headers: {
+					"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+				},
+				withCredentials: true,
+			});
+
+			this.props.setUsername(this.state.username);
+		} catch (e) {
+			console.log(e.message);
+		}
+	}
+
+	render() {
+		return (
+			<div>
+				<div>
+					<label>Old password</label>
+					<input
+						type="text"
+						name="old"
+						id="old"
+						onChange={this.handleOldChange}
+					/>
+				</div>
+				<div>
+					<label>New password</label>
+					<input
+						type="text"
+						name="new"
+						id="new"
+						onChange={this.handleNewChange}
+					/>
+				</div>
+				<div>
+					<label>Confirm new Password</label>
+					<input
+						type="text"
+						name="new_confirm"
+						id="new_confirm"
+						onChange={this.handleNewConfirmChange}
+					/>
+				</div>
+				<button onClick={this.handleSubmit}>Submit</button>
+			</div>
+		);
+	}
+}
