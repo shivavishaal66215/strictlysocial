@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./styles/Register.css";
+import Mobile from "./images/undraw_Mobile_login_re_9ntv.svg";
 const qs = require("qs");
 
 export default class Register extends Component {
@@ -63,33 +65,57 @@ export default class Register extends Component {
 
 	render() {
 		return (
-			<div>
-				<div>
-					<label htmlFor="username">Username</label>
-					<input
-						type="text"
-						name="username"
-						onChange={this.handleUsernameChange}
-					/>
+			<div className="Register">
+				<div className="Register-leftContainer">
+					<div className="module-heading large-spacer-vertical">
+						"New phone, who dis?"
+					</div>
+					<img src={Mobile}></img>
 				</div>
-				<div>
-					<label htmlFor="password">Password</label>
-					<input
-						type="password"
-						name="password"
-						onChange={this.handlePasswordChange}
-					/>
-				</div>
-				<div>
-					<label htmlFor="confirmPassword">Confirm Password</label>
-					<input
-						type="password"
-						name="confirmPassword"
-						onChange={this.handleConfirmPasswordChange}
-					/>
-				</div>
-				<div>
-					<button onClick={this.handleSubmit}>Submit</button>
+				<div className="Register-rightContainer">
+					<div className="Register-rightContainer-content">
+						<div className="module-heading large-spacer-vertical">Register</div>
+						<div className="Register-content">
+							<div className="large-spacer-vertical">
+								<label htmlFor="username">Username</label>
+								<br />
+								<input
+									type="text"
+									name="username"
+									onChange={this.handleUsernameChange}
+								/>
+							</div>
+							<div className="large-spacer-vertical">
+								<label htmlFor="password">Password</label>
+								<br />
+								<input
+									type="password"
+									name="password"
+									onChange={this.handlePasswordChange}
+								/>
+							</div>
+							<div className="large-spacer-vertical">
+								<label htmlFor="confirmpassword">Confirm Password</label>
+								<br />
+								<input
+									type="password"
+									name="confirmpassword"
+									onChange={this.handleConfirmPasswordChange}
+								/>
+							</div>
+							<div className="large-spacer-vertical">Forgot Password?</div>
+							<div className="underlined large-spacer-vertical">
+								Don't have an account? Try
+								<br />
+								registering.
+							</div>
+						</div>
+						<div>
+							<button className="submit" onClick={this.handleSubmit}>
+								Submit
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
