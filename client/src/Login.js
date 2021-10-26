@@ -54,6 +54,9 @@ export default class Login extends Component {
 		return (
 			<div className="Login">
 				<div className="Login-leftContainer">
+					<div className="module-heading large-spacer-vertical">
+						You know what to do...
+					</div>
 					<img src={fingerprint}></img>
 				</div>
 				<div className="Login-rightContainer">
