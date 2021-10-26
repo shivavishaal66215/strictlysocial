@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./styles/ChangePassword.css";
+import my_password from "./images/undraw_my_password_d6kg.svg";
 const qs = require("qs");
 export default class ChangePassword extends Component {
 	constructor(props) {
@@ -74,36 +76,81 @@ export default class ChangePassword extends Component {
 
 	render() {
 		return (
-			<div>
-				<div>
-					<label>Old password</label>
-					<input
-						type="text"
-						name="old"
-						id="old"
-						onChange={this.handleOldChange}
-					/>
+			<div className="ChangePassword">
+				<div className="ChangePassword-rightContainer">
+					<div className="ChangePassword-rightContainer-content">
+						<div className="module-heading large-spacer-vertical">
+							Change Password
+						</div>
+						<div className="ChangePassword-content">
+							<div className="large-spacer-vertical">
+								<label htmlFor="old">Old Password</label>
+								<br />
+								<input type="text" name="old" onChange={this.handleOldChange} />
+							</div>
+							<div className="large-spacer-vertical">
+								<label htmlFor="new">New Password</label>
+								<br />
+								<input
+									type="password"
+									name="new"
+									onChange={this.handleNewChange}
+								/>
+							</div>
+							<div className="large-spacer-vertical">
+								<label htmlFor="confirmpassword">Confirm New Password</label>
+								<br />
+								<input
+									type="password"
+									name="new_confirm"
+									onChange={this.handleNewConfirmChange}
+								/>
+							</div>
+						</div>
+						<div>
+							<button className="submit" onClick={this.handleSubmit}>
+								Submit
+							</button>
+						</div>
+					</div>
 				</div>
-				<div>
-					<label>New password</label>
-					<input
-						type="text"
-						name="new"
-						id="new"
-						onChange={this.handleNewChange}
-					/>
+				<div className="ChangePassword-leftContainer">
+					<img src={my_password}></img>
 				</div>
-				<div>
-					<label>Confirm new Password</label>
-					<input
-						type="text"
-						name="new_confirm"
-						id="new_confirm"
-						onChange={this.handleNewConfirmChange}
-					/>
-				</div>
-				<button onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);
 	}
 }
+
+//return (
+// 	<div>
+// 		<div>
+// 			<label>Old password</label>
+// 			<input
+// 				type="text"
+// 				name="old"
+// 				id="old"
+// 				onChange={this.handleOldChange}
+// 			/>
+// 		</div>
+// 		<div>
+// 			<label>New password</label>
+// 			<input
+// 				type="text"
+// 				name="new"
+// 				id="new"
+// 				onChange={this.handleNewChange}
+// 			/>
+// 		</div>
+// 		<div>
+// 			<label>Confirm new Password</label>
+// 			<input
+// 				type="text"
+// 				name="new_confirm"
+// 				id="new_confirm"
+// 				onChange={this.handleNewConfirmChange}
+// 			/>
+// 		</div>
+// 		<button onClick={this.handleSubmit}>Submit</button>
+// 	</div>
+// );
