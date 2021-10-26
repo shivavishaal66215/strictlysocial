@@ -26,6 +26,7 @@ export default class App extends Component {
 		};
 
 		this.setUsername = this.setUsername.bind(this);
+		this.clearState = this.clearState.bind(this);
 	}
 
 	setUsername(newUsername) {
