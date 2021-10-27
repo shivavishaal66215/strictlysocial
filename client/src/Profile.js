@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import avatar from "./images/undraw_male_avatar_323b.svg";
+import "./styles/Profile.css";
 const qs = require("qs");
 export default class Profile extends Component {
 	constructor(props) {
@@ -94,36 +96,51 @@ export default class Profile extends Component {
 
 	render() {
 		return (
-			<div>
-				<div>
-					<h3>Username</h3>
-					<div>{this.state.username}</div>
+			<div className="Profile">
+				<div className="Profile-banner">
+					<img className="Profile-avatar" src={avatar} />
+					<div className="Profile-banner-right">
+						<div className="module-heading">{this.state.username}</div>
+						<div className="Profile-sidebar">
+							<div className="Profile-sidebar-content">Explore</div>
+							<div className="Profile-sidebar-content">Friends</div>
+							<div className="Profile-sidebar-content">Interests</div>
+						</div>
+					</div>
 				</div>
-				<div>
-					<h3>Email</h3>
-					<div>{this.state.email}</div>
-					<label>New Email: </label>
-					<input
-						type="text"
-						name="email"
-						id="email"
-						onChange={this.handleEmailChange}
-					/>
-					<button onClick={this.handleEmailSet}>Set</button>
+				<div className="Profile-content">
+					<div className="Profile-subcontent">
+						<div className="module-heading">Email</div>
+						<div>{this.state.email}</div>
+						<label>New Email: </label>
+						<input
+							type="text"
+							name="email"
+							id="email"
+							onChange={this.handleEmailChange}
+						/>
+						<button onClick={this.handleEmailSet} className="submit">
+							Edit
+						</button>
+					</div>
+					<div>
+						<div className="module-heading">Phone</div>
+						<div>{this.state.phone}</div>
+						<label>New Phone: </label>
+						<input
+							type="text"
+							name="phone"
+							id="phone"
+							onChange={this.handlePhoneChange}
+						/>
+						<button onClick={this.handlePhoneSet} className="submit">
+							Edit
+						</button>
+					</div>
 				</div>
-				<div>
-					<h3>Phone</h3>
-					<div>{this.state.phone}</div>
-					<label>New Phone: </label>
-					<input
-						type="text"
-						name="phone"
-						id="phone"
-						onChange={this.handlePhoneChange}
-					/>
-					<button onClick={this.handlePhoneSet}>Set</button>
-				</div>
-				<button onClick={this.handleSave}>Save</button>
+				<button onClick={this.handleSave} className="submit">
+					Save
+				</button>
 			</div>
 		);
 	}
