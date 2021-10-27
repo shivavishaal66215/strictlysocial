@@ -79,9 +79,7 @@ export default class ChangePassword extends Component {
 			<div className="ChangePassword">
 				<div className="ChangePassword-rightContainer">
 					<div className="ChangePassword-rightContainer-content">
-						<div className="module-heading large-spacer-vertical">
-							Change Password
-						</div>
+						<div className="module-heading large-spacer-vertical">Password</div>
 						<div className="ChangePassword-content">
 							<div className="large-spacer-vertical">
 								<label htmlFor="old">Old Password</label>
