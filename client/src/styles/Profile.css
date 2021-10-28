@@ -47,8 +47,50 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 20px;
+	margin-top: 5%;
 }
 
 .Profile-subcontent {
-	margin-right: 10%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.Profile-large-spacing {
+	margin-bottom: 30px;
+}
+
+.Profile-small-spacing {
+	margin-bottom: 10px;
+}
+
+.Profile-input {
+	width: 50%;
+	margin-right: 10px;
+}
+
+.Profile-submit {
+	margin-top: 5%;
+}
+
+.Profile-subcontent-content {
+	font-size: 18px;
+}
+
+.Profile-current {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.Profile-current-value {
+	padding: 5px 20px;
+	background-color: black;
+	color: white;
+	border-radius: 30px;
+	text-align: center;
+	max-width: 250px;
+	overflow-wrap: break-word;
+	margin-left: 10px;
 }

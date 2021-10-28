@@ -110,35 +110,52 @@ export default class Profile extends Component {
 				</div>
 				<div className="Profile-content">
 					<div className="Profile-subcontent">
-						<div className="module-heading">Email</div>
-						<div>{this.state.email}</div>
-						<label>New Email: </label>
-						<input
-							type="text"
-							name="email"
-							id="email"
-							onChange={this.handleEmailChange}
-						/>
-						<button onClick={this.handleEmailSet} className="submit">
-							Edit
-						</button>
+						<div className="module-heading Profile-large-spacing">Email</div>
+						<div className="Profile-subcontent-content">
+							<div className="Profile-current Profile-small-spacing">
+								<div className="underlined">Current Email:</div>
+								<div className="Profile-current-value">{this.state.email}</div>
+							</div>
+							<div>
+								<label>New Email: </label>
+								<input
+									className="Profile-input"
+									type="text"
+									name="email"
+									id="email"
+									onChange={this.handleEmailChange}
+								/>
+								<button onClick={this.handleEmailSet} className="submit">
+									Edit
+								</button>
+							</div>
+						</div>
 					</div>
-					<div>
-						<div className="module-heading">Phone</div>
-						<div>{this.state.phone}</div>
-						<label>New Phone: </label>
-						<input
-							type="text"
-							name="phone"
-							id="phone"
-							onChange={this.handlePhoneChange}
-						/>
-						<button onClick={this.handlePhoneSet} className="submit">
-							Edit
-						</button>
+
+					<div className="Profile-subcontent">
+						<div className="module-heading Profile-large-spacing">Phone</div>
+						<div className="Profile-subcontent-content">
+							<div className="Profile-current Profile-small-spacing">
+								<div className="underlined">Current Phone:</div>
+								<div className="Profile-current-value">{this.state.phone}</div>
+							</div>
+							<div>
+								<label>New Phone: </label>
+								<input
+									className="Profile-input"
+									type="text"
+									name="phone"
+									id="phone"
+									onChange={this.handlePhoneChange}
+								/>
+								<button onClick={this.handlePhoneSet} className="submit">
+									Edit
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
-				<button onClick={this.handleSave} className="submit">
+				<button onClick={this.handleSave} className="submit Profile-submit">
 					Save
 				</button>
 			</div>
