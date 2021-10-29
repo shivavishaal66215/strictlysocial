@@ -99,9 +99,10 @@ export default class App extends Component {
 						component={() => <ChangePassword />}
 					/>
 					<Route
-						exact
-						path="/friendsinfo"
-						component={() => <FriendsInfo username={this.state.username} />}
+						path="/friendsinfo/:id"
+						component={(routeProps) => (
+							<FriendsInfo username={this.state.username} {...routeProps} />
+						)}
 					/>
 				</Switch>
 			</div>
