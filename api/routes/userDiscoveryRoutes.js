@@ -126,19 +126,31 @@ router.post("/getUserPhone", async (req, res) => {
 });
 
 //fetches the entire profile of a user whose username is passed into the body
+//but before that, check if friend is in friends of username
 router.post("/getUserProfile", async (req, res) => {
-	const { username } = req.body;
+	const { friend } = req.body;
+	const username = req.session.username;
 
 	try {
-		const user = await UserSocial.findOne({ username: username });
+		//checking if friend is in friends of username
+		const user_friend_check = await UserFriendship.findOne({
+			username: username,
+		});
 
-		if (user == null) {
+		if (!isPresent(user_friend_check.friends, friend)) {
+			//friend is not a friend of username
+			throw "not friends";
+		}
+
+		const friend_user = await UserSocial.findOne({ username: friend });
+
+		if (friend_user == null) {
 			throw "no such user";
 		} else {
 			const result = {
-				username: user.username,
-				phone: user.phone,
-				email: user.email,
+				username: friend_user.username,
+				phone: friend_user.phone,
+				email: friend_user.email,
 			};
 
 			res.status(200).send(result);
