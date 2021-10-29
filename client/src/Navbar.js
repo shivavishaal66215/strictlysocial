@@ -37,7 +37,6 @@ export default class Navbar extends Component {
 				<Link to="/explore">Explore</Link>
 				<Link to="/profile">Profile</Link>
 				<Link to="/changepassword">ChangePassword</Link>
-				<Link to="/friendsinfo">FriendsInfo</Link>
 				<button onClick={this.handleLogout}>Logout</button>
 			</div>
 		);
