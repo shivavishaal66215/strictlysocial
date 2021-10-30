@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./styles/Interests.css";
+import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
 
 const startsWithString = (source1, target1) => {
@@ -192,47 +194,49 @@ export default class Interests extends Component {
 
 	render() {
 		return (
-			<div>
-				<div>Interests:</div>
-				<div>
-					<ul>
+			<div className="Interests">
+				<div className="Interests-leftcontainer">
+					<img src={avatar} />
+					<div className="top-line"></div>
+					<div className="Interests-leftcontainer-heading">My Interests</div>
+					<div className="bottom-line"></div>
+					<div className="Interests-interests">
 						{this.state.interest.map((ele) => {
 							// key here is set to each interest element since they are all unique
 							return (
-								<div key={ele}>
-									<li>
-										<span>{ele}</span>
-										<button id={ele} onClick={this.handleRemoveItem}>
-											x
-										</button>
-									</li>
+								<div key={ele} className="Interests-item">
+									<span>{ele}</span>
+									<div className="Interests-item-verticalline"></div>
+									<button id={ele} onClick={this.handleRemoveItem}>
+										x
+									</button>
 								</div>
 							);
 						})}
-					</ul>
-
-					<div>
-						<label htmlFor="searchItem">Search: </label>
-						<input
-							type="text"
-							name="searchItem"
-							id="searchItem"
-							onChange={this.handleSearchChange}
-						/>
-						<ul>
-							{this.state.targetInterests.map((ele) => {
-								return (
-									<li key={`t_${ele}`}>
-										<span>{ele}</span>
-										<button id={`tb_${ele}`} onClick={this.handleNewItemSet}>
-											Add
-										</button>
-									</li>
-								);
-							})}
-						</ul>
 					</div>
 					<button onClick={this.handleSaveInterests}>Save Interests</button>
+				</div>
+				<div>
+					<div className="Interests-rightContainer">Interests:</div>
+					<label htmlFor="searchItem">Search: </label>
+					<input
+						type="text"
+						name="searchItem"
+						id="searchItem"
+						onChange={this.handleSearchChange}
+					/>
+					<ul>
+						{this.state.targetInterests.map((ele) => {
+							return (
+								<li key={`t_${ele}`}>
+									<span>{ele}</span>
+									<button id={`tb_${ele}`} onClick={this.handleNewItemSet}>
+										Add
+									</button>
+								</li>
+							);
+						})}
+					</ul>
 				</div>
 			</div>
 		);
