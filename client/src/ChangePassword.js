@@ -119,36 +119,3 @@ export default class ChangePassword extends Component {
 		);
 	}
 }
-
-//return (
-// 	<div>
-// 		<div>
-// 			<label>Old password</label>
-// 			<input
-// 				type="text"
-// 				name="old"
-// 				id="old"
-// 				onChange={this.handleOldChange}
-// 			/>
-// 		</div>
-// 		<div>
-// 			<label>New password</label>
-// 			<input
-// 				type="text"
-// 				name="new"
-// 				id="new"
-// 				onChange={this.handleNewChange}
-// 			/>
-// 		</div>
-// 		<div>
-// 			<label>Confirm new Password</label>
-// 			<input
-// 				type="text"
-// 				name="new_confirm"
-// 				id="new_confirm"
-// 				onChange={this.handleNewConfirmChange}
-// 			/>
-// 		</div>
-// 		<button onClick={this.handleSubmit}>Submit</button>
-// 	</div>
-// );
