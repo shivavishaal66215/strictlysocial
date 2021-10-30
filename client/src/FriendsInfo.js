@@ -51,11 +51,6 @@ export default class FriendsInfo extends Component {
 					<img className="Profile-avatar" src={avatar} />
 					<div className="Profile-banner-right">
 						<div className="module-heading">{this.state.username}</div>
-						<div className="Profile-sidebar">
-							<div className="Profile-sidebar-content">Explore</div>
-							<div className="Profile-sidebar-content">Friends</div>
-							<div className="Profile-sidebar-content">Interests</div>
-						</div>
 					</div>
 				</div>
 				<div className="Profile-content">
