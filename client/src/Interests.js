@@ -207,36 +207,50 @@ export default class Interests extends Component {
 								<div key={ele} className="Interests-item">
 									<span>{ele}</span>
 									<div className="Interests-item-verticalline"></div>
-									<button id={ele} onClick={this.handleRemoveItem}>
+									<div
+										className="Interests-remove"
+										id={ele}
+										onClick={this.handleRemoveItem}
+									>
 										x
-									</button>
+									</div>
 								</div>
 							);
 						})}
 					</div>
-					<button onClick={this.handleSaveInterests}>Save Interests</button>
+					<div
+						className="submit Interests-button"
+						onClick={this.handleSaveInterests}
+					>
+						Save Interests
+					</div>
 				</div>
-				<div>
-					<div className="Interests-rightContainer">Interests:</div>
-					<label htmlFor="searchItem">Search: </label>
+				<div className="Interests-rightContainer">
+					<div className="module-heading Interests-rightContainer-heading small-spacer-vertical">
+						Interests
+					</div>
 					<input
 						type="text"
 						name="searchItem"
 						id="searchItem"
 						onChange={this.handleSearchChange}
 					/>
-					<ul>
+					<div className="Interests-all-searchItems">
 						{this.state.targetInterests.map((ele) => {
 							return (
-								<li key={`t_${ele}`}>
-									<span>{ele}</span>
-									<button id={`tb_${ele}`} onClick={this.handleNewItemSet}>
+								<div className="Interests-search-item">
+									<div className="Interests-search-item-value">{ele}</div>
+									<div
+										className="Interests-add-button"
+										id={`tb_${ele}`}
+										onClick={this.handleNewItemSet}
+									>
 										Add
-									</button>
-								</li>
+									</div>
+								</div>
 							);
 						})}
-					</ul>
+					</div>
 				</div>
 			</div>
 		);
