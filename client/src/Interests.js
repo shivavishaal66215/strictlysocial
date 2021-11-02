@@ -118,7 +118,12 @@ export default class Interests extends Component {
 		const r = await fetchAllInterests();
 		if (this._isMounted) {
 			this.setState(() => {
-				return { ...this.state, interest: res.data, allInterests: r };
+				return {
+					...this.state,
+					interest: res.data,
+					allInterests: r,
+					targetInterests: r,
+				};
 			});
 		}
 	}
@@ -233,12 +238,13 @@ export default class Interests extends Component {
 						type="text"
 						name="searchItem"
 						id="searchItem"
+						placeholder="Search"
 						onChange={this.handleSearchChange}
 					/>
 					<div className="Interests-all-searchItems">
 						{this.state.targetInterests.map((ele) => {
 							return (
-								<div className="Interests-search-item">
+								<div className="Interests-search-item" key={`all_${ele}`}>
 									<div className="Interests-search-item-value">{ele}</div>
 									<div
 										className="Interests-add-button"
