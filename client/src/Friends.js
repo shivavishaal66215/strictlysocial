@@ -1,56 +1,131 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./styles/Friends.css";
+import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
 
 const fetchFriends = async () => {
-	try {
-		const res = await axios({
-			method: "get",
-			url: "/friends",
-			headers: {
-				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
-			},
-			withCredentials: true,
-		});
-		return res.data;
-	} catch (e) {
-		console.log("cannot fetch friends");
-		return [];
-	}
+	// try {
+	// 	const res = await axios({
+	// 		method: "get",
+	// 		url: "/friends",
+	// 		headers: {
+	// 			"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+	// 		},
+	// 		withCredentials: true,
+	// 	});
+	// 	return res.data;
+	// } catch (e) {
+	// 	console.log("cannot fetch friends");
+	// 	return [];
+	// }
+
+	return [
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+	];
 };
 
 const fetchOutgoingList = async () => {
-	try {
-		const res = await axios({
-			method: "get",
-			url: "/requestFriend",
-			headers: {
-				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
-			},
-			withCredentials: true,
-		});
-		return res.data;
-	} catch (e) {
-		console.log("cannot fetch outgoing list");
-		return [];
-	}
+	// try {
+	// 	const res = await axios({
+	// 		method: "get",
+	// 		url: "/requestFriend",
+	// 		headers: {
+	// 			"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+	// 		},
+	// 		withCredentials: true,
+	// 	});
+	// 	return res.data;
+	// } catch (e) {
+	// 	console.log("cannot fetch outgoing list");
+	// 	return [];
+	// }
+
+	return [
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+	];
 };
 
 const fetchIncomingList = async () => {
-	try {
-		const res = await axios({
-			method: "get",
-			url: "/incomingFriend",
-			headers: {
-				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
-			},
-			withCredentials: true,
-		});
-		return res.data;
-	} catch (e) {
-		console.log("cannot fetch outgoing list");
-		return [];
-	}
+	// try {
+	// 	const res = await axios({
+	// 		method: "get",
+	// 		url: "/incomingFriend",
+	// 		headers: {
+	// 			"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+	// 		},
+	// 		withCredentials: true,
+	// 	});
+	// 	return res.data;
+	// } catch (e) {
+	// 	console.log("cannot fetch outgoing list");
+	// 	return [];
+	// }
+
+	return [
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+		"vishaal",
+	];
 };
 
 export default class Friends extends Component {
@@ -247,20 +322,67 @@ export default class Friends extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Friends: </h1>
-				<ul>
+			<div className="Friends">
+				<div className="module-heading">Friends</div>
+				<div className="Friends-items">
 					{this.state.friends.map((ele) => {
 						return (
-							<div key={ele}>
-								<li>{ele}</li>
-								<button id={ele} onClick={this.handleRemove}>
-									Remove
-								</button>
+							<div key={ele} className="Friends-single-item">
+								<img src={avatar} className="Friends-img" />
+								<div className="Friends-item-value">{ele}</div>
+								<div className="Friends-friends-buttons">
+									<div className="border-bottom Friends-friend-single-button">
+										Profile
+									</div>
+									<div
+										id={ele}
+										onClick={this.handleRemove}
+										className="Friends-friend-single-button"
+									>
+										Remove
+									</div>
+								</div>
 							</div>
 						);
 					})}
-				</ul>
+				</div>
+
+				<div className="module-heading">Outgoing Requests</div>
+				<div className="Friends-items">
+					{this.state.outgoing.map((ele) => {
+						return (
+							<div key={ele} className="Friends-single-item">
+								<img src={avatar} className="Friends-img" />
+								<div className="Friends-item-value">{ele}</div>
+								<div
+									id={ele}
+									onClick={this.handleCancel}
+									className="Friends-item-button"
+								>
+									Cancel
+								</div>
+							</div>
+						);
+					})}
+				</div>
+				<div className="module-heading">Incoming Requests</div>
+				<div className="Friends-items">
+					{this.state.incoming.map((ele) => {
+						return (
+							<div key={ele} className="Friends-single-item">
+								<img src={avatar} className="Friends-img" />
+								<div className="Friends-item-value">{ele}</div>
+								<div
+									id={ele}
+									onClick={this.handleAccept}
+									className="Friends-item-button"
+								>
+									Accept
+								</div>
+							</div>
+						);
+					})}
+				</div>
 				<div>
 					<label htmlFor="newRequest">New Request</label>
 					<input
@@ -270,36 +392,6 @@ export default class Friends extends Component {
 						onChange={this.handleNewRequestChange}
 					/>
 					<button onClick={this.handleNewRequestSet}>Set</button>
-				</div>
-				<div>
-					<h3>Outgoing Requests:</h3>
-					<ul>
-						{this.state.outgoing.map((ele) => {
-							return (
-								<div key={ele}>
-									<li>{ele}</li>
-									<button id={ele} onClick={this.handleCancel}>
-										Cancel
-									</button>
-								</div>
-							);
-						})}
-					</ul>
-				</div>
-				<div>
-					<h3>Incoming Requests:</h3>
-					<ul>
-						{this.state.incoming.map((ele) => {
-							return (
-								<div key={ele}>
-									<li>{ele}</li>
-									<button id={ele} onClick={this.handleAccept}>
-										Accept
-									</button>
-								</div>
-							);
-						})}
-					</ul>
 				</div>
 			</div>
 		);
