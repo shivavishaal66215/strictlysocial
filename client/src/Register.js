@@ -4,6 +4,8 @@ import "./styles/Register.css";
 import Mobile from "./images/undraw_Mobile_login_re_9ntv.svg";
 const qs = require("qs");
 
+//TODO: Make sure usernames are less than 15chars long. UI breaks for longer names
+
 export default class Register extends Component {
 	constructor(props) {
 		super(props);
