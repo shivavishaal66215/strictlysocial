@@ -75,3 +75,7 @@ img {
 	background-color: black;
 	color: white;
 }
+
+.border-bottom {
+	border-bottom: 2px solid black;
+}
