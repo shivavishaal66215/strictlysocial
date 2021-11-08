@@ -1,0 +1,84 @@
+.Explore {
+	width: 100%;
+	height: 100%;
+	min-height: 900px;
+	min-width: 900px;
+	background-color: rgba(108, 99, 255, 0.28);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.Explore-leftcontainer {
+	width: 40%;
+	height: 100%;
+	padding: 5%;
+	background-color: rgba(108, 99, 255, 0.2);
+}
+
+.Explore-img {
+	width: 100%;
+}
+
+.Explore-leftcontainer-content {
+	font-size: 20px;
+	margin-top: 100px;
+}
+
+.Explore-refresh {
+	padding: 5px 10px;
+	background-color: black;
+	color: white;
+	display: inline-block;
+	border-radius: 30px;
+	margin-top: 50px;
+	cursor: pointer;
+}
+
+.Explore-rightcontainer {
+	width: 60%;
+	height: 100%;
+	padding: 5%;
+}
+
+.Explore-recommendationscontainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	overflow-y: auto;
+}
+
+.Explore-recommendation {
+	width: 48%;
+	margin-right: 2%;
+	background-color: black;
+	color: white;
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 10px;
+	font-size: 20px;
+	padding-left: 5%;
+	margin-bottom: 50px;
+}
+
+.Explore-avatar {
+	width: 40px;
+}
+
+.Explore-add {
+	height: 100%;
+	background-color: white;
+	color: black;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px 20px;
+	cursor: pointer;
+}
