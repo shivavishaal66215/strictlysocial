@@ -1,6 +1,6 @@
 .Friends {
 	height: 100%;
-	min-height: 1200px;
+	min-height: 1400px;
 	width: 100%;
 	background-color: rgba(108, 99, 255, 0.28);
 	padding: 5%;
@@ -76,5 +76,21 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
+}
+
+.Friends-NewRequestBlock {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+}
+
+.Friends-submit {
+	background-color: black;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 30px;
+	margin-left: 5px;
 	cursor: pointer;
 }

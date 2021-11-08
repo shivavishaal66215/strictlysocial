@@ -5,127 +5,54 @@ import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
 
 const fetchFriends = async () => {
-	// try {
-	// 	const res = await axios({
-	// 		method: "get",
-	// 		url: "/friends",
-	// 		headers: {
-	// 			"content-type": "application/x-www-form-urlencoded;charset=utf-8",
-	// 		},
-	// 		withCredentials: true,
-	// 	});
-	// 	return res.data;
-	// } catch (e) {
-	// 	console.log("cannot fetch friends");
-	// 	return [];
-	// }
-
-	return [
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-	];
+	try {
+		const res = await axios({
+			method: "get",
+			url: "/friends",
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+		return res.data;
+	} catch (e) {
+		console.log("cannot fetch friends");
+		return [];
+	}
 };
 
 const fetchOutgoingList = async () => {
-	// try {
-	// 	const res = await axios({
-	// 		method: "get",
-	// 		url: "/requestFriend",
-	// 		headers: {
-	// 			"content-type": "application/x-www-form-urlencoded;charset=utf-8",
-	// 		},
-	// 		withCredentials: true,
-	// 	});
-	// 	return res.data;
-	// } catch (e) {
-	// 	console.log("cannot fetch outgoing list");
-	// 	return [];
-	// }
-
-	return [
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-	];
+	try {
+		const res = await axios({
+			method: "get",
+			url: "/requestFriend",
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+		return res.data;
+	} catch (e) {
+		console.log("cannot fetch outgoing list");
+		return [];
+	}
 };
 
 const fetchIncomingList = async () => {
-	// try {
-	// 	const res = await axios({
-	// 		method: "get",
-	// 		url: "/incomingFriend",
-	// 		headers: {
-	// 			"content-type": "application/x-www-form-urlencoded;charset=utf-8",
-	// 		},
-	// 		withCredentials: true,
-	// 	});
-	// 	return res.data;
-	// } catch (e) {
-	// 	console.log("cannot fetch outgoing list");
-	// 	return [];
-	// }
-
-	return [
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-		"vishaal",
-	];
+	try {
+		const res = await axios({
+			method: "get",
+			url: "/incomingFriend",
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+		return res.data;
+	} catch (e) {
+		console.log("cannot fetch outgoing list");
+		return [];
+	}
 };
 
 export default class Friends extends Component {
@@ -331,7 +258,12 @@ export default class Friends extends Component {
 								<img src={avatar} className="Friends-img" />
 								<div className="Friends-item-value">{ele}</div>
 								<div className="Friends-friends-buttons">
-									<div className="border-bottom Friends-friend-single-button">
+									<div
+										className="border-bottom Friends-friend-single-button"
+										onClick={() => {
+											this.props.history.push(`friendsinfo/${ele}`);
+										}}
+									>
 										Profile
 									</div>
 									<div
@@ -383,15 +315,17 @@ export default class Friends extends Component {
 						);
 					})}
 				</div>
-				<div>
-					<label htmlFor="newRequest">New Request</label>
+				<div className="module-heading small-spacer-vertical">Add Friend</div>
+				<div className="Friends-NewRequestBlock">
 					<input
 						type="text"
 						name="newRequest"
 						id="newRequest"
 						onChange={this.handleNewRequestChange}
 					/>
-					<button onClick={this.handleNewRequestSet}>Set</button>
+					<div className="Friends-submit" onClick={this.handleNewRequestSet}>
+						Set
+					</div>
 				</div>
 			</div>
 		);
