@@ -248,6 +248,10 @@ export default class Friends extends Component {
 	}
 
 	render() {
+		if (this.props.username === "") {
+			this.props.history.push("/login");
+		}
+
 		return (
 			<div className="Friends">
 				<div className="module-heading">Friends</div>
