@@ -40,17 +40,6 @@ export default class Discovery extends Component {
 
 	async handleRefresh() {
 		const recommendations = await fetchRecommendations();
-		// let recommendations = [
-		// 	"vishaal",
-		// 	"vishaal",
-		// 	"vishaal",
-		// 	"vishaal",
-		// 	"vishaal",
-		// 	"vishaal",
-		// 	"vishaal",
-		// 	"vishaal",
-		// ];
-
 		this.setState(() => {
 			return { ...this.state, recommendations: recommendations };
 		});
