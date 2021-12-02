@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
@@ -15,8 +15,6 @@ import FriendsInfo from "./FriendsInfo";
 
 import "./styles/App.css";
 
-let isAllowed = false;
-
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -28,7 +26,6 @@ export default class App extends Component {
 		};
 
 		this.setUsername = this.setUsername.bind(this);
-		this.getUsername = this.getUsername.bind(this);
 		this.clearState = this.clearState.bind(this);
 	}
 
@@ -36,19 +33,13 @@ export default class App extends Component {
 		this.setState(() => {
 			return { ...this.state, username: newUsername };
 		});
-		isAllowed = true;
 		this.componentDidMount();
-	}
-
-	getUsername() {
-		return this.state.username;
 	}
 
 	clearState() {
 		this.setState(() => {
 			return { ...this.state, username: "", email: "", phone: "" };
 		});
-		isAllowed = false;
 	}
 
 	async componentDidMount() {
@@ -107,17 +98,15 @@ export default class App extends Component {
 						)}
 					/>
 					<Route
+						exact
+						path="/changepassword"
+						component={() => <ChangePassword />}
+					/>
+					<Route
 						path="/friendsinfo/:id"
 						component={(routeProps) => (
 							<FriendsInfo username={this.state.username} {...routeProps} />
 						)}
-					/>
-					<Route
-						exact
-						path="/changepassword"
-						component={() => {
-							return isAllowed ? <ChangePassword /> : <Redirect to="/login" />;
-						}}
 					/>
 				</Switch>
 			</div>

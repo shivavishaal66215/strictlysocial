@@ -67,6 +67,8 @@ export default class ChangePassword extends Component {
 				},
 				withCredentials: true,
 			});
+
+			this.props.setUsername(this.state.username);
 		} catch (e) {
 			console.log(e.message);
 		}
