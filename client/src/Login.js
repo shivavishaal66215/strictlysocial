@@ -44,7 +44,8 @@ export default class Login extends Component {
 				withCredentials: true,
 			});
 
-			this.props.setUsername(this.state.username);
+			await this.props.setUsername(this.state.username);
+			this.props.history.push("/profile");
 		} catch (e) {
 			console.log("Wrong username/password");
 		}
