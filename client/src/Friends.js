@@ -4,6 +4,35 @@ import "./styles/Friends.css";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
 
+const checkCorrectUsername = async () => {
+	const username = localStorage.getItem("username");
+
+	console.log(username);
+
+	if (username === null || username === undefined || username === "") {
+		return false;
+	}
+
+	try {
+		const res = await axios({
+			method: "get",
+			url: "/myProfile",
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+
+		if (res.data.username !== username) {
+			throw Error("wrong user");
+		}
+	} catch (e) {
+		return false;
+	}
+
+	return true;
+};
+
 const fetchFriends = async () => {
 	try {
 		const res = await axios({
@@ -221,6 +250,12 @@ export default class Friends extends Component {
 	}
 
 	async componentDidMount() {
+		const result = await checkCorrectUsername();
+		if (!result) {
+			this.props.history.push("/login");
+			return;
+		}
+
 		try {
 			let res = await fetchFriends();
 
