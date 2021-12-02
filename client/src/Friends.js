@@ -4,8 +4,6 @@ import "./styles/Friends.css";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
 
-let isAllowed = true;
-
 const fetchFriends = async () => {
 	try {
 		const res = await axios({
@@ -16,11 +14,9 @@ const fetchFriends = async () => {
 			},
 			withCredentials: true,
 		});
-		isAllowed = true;
 		return res.data;
 	} catch (e) {
 		console.log("cannot fetch friends");
-		isAllowed = false;
 		return [];
 	}
 };
@@ -35,11 +31,9 @@ const fetchOutgoingList = async () => {
 			},
 			withCredentials: true,
 		});
-		isAllowed = true;
 		return res.data;
 	} catch (e) {
 		console.log("cannot fetch outgoing list");
-		isAllowed = false;
 		return [];
 	}
 };
@@ -54,11 +48,9 @@ const fetchIncomingList = async () => {
 			},
 			withCredentials: true,
 		});
-		isAllowed = true;
 		return res.data;
 	} catch (e) {
 		console.log("cannot fetch outgoing list");
-		isAllowed = false;
 		return [];
 	}
 };
@@ -232,19 +224,12 @@ export default class Friends extends Component {
 		try {
 			let res = await fetchFriends();
 
-			if (!isAllowed) {
-				throw Error("cannot fetch");
-			}
 			//setting the friends list
 			this.setState(() => {
 				return { ...this.state, friends: res };
 			});
 
 			res = await fetchOutgoingList();
-
-			if (!isAllowed) {
-				throw Error("cannot fetch");
-			}
 
 			//setting the outgoing list
 			this.setState(() => {
@@ -253,16 +238,12 @@ export default class Friends extends Component {
 
 			res = await fetchIncomingList();
 
-			if (!isAllowed) {
-				throw Error("cannot fetch");
-			}
-
 			//setting the incoming list
 			this.setState(() => {
 				return { ...this.state, incoming: res };
 			});
 		} catch (e) {
-			this.props.history.push("/login");
+			console.log("something went wrong");
 		}
 	}
 
