@@ -23,6 +23,7 @@ export default class App extends Component {
 			username: "",
 			email: "",
 			phone: "",
+			isAuthenticated: false,
 		};
 
 		this.setUsername = this.setUsername.bind(this);
@@ -37,9 +38,20 @@ export default class App extends Component {
 	}
 
 	clearState() {
-		this.setState(() => {
-			return { ...this.state, username: "", email: "", phone: "" };
-		});
+		this.setState(
+			() => {
+				return {
+					...this.state,
+					username: "",
+					email: "",
+					phone: "",
+					isAuthenticated: false,
+				};
+			},
+			() => {
+				localStorage.setItem("username", "");
+			}
+		);
 	}
 
 	async componentDidMount() {
@@ -53,14 +65,20 @@ export default class App extends Component {
 				withCredentials: true,
 			});
 			//successfully fetched username
-			this.setState(() => {
-				return {
-					...this.state,
-					username: res.data.username,
-					phone: res.data.phone,
-					email: res.data.email,
-				};
-			});
+			this.setState(
+				() => {
+					return {
+						...this.state,
+						username: res.data.username,
+						phone: res.data.phone,
+						email: res.data.email,
+						isAuthenticated: true,
+					};
+				},
+				() => {
+					localStorage.setItem("username", this.state.username);
+				}
+			);
 		} catch (e) {
 			console.log("not logged in");
 		}
@@ -75,7 +93,9 @@ export default class App extends Component {
 					<Route
 						exact
 						path="/login"
-						component={() => <Login setUsername={this.setUsername} />}
+						component={(routerProps) => (
+							<Login setUsername={this.setUsername} {...routerProps} />
+						)}
 					/>
 					<Route exact path="/register" component={() => <Register />} />
 					<Route exact path="/dashboard" component={() => <Dashboard />} />
