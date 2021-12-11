@@ -7,8 +7,7 @@ const qs = require("qs");
 const checkCorrectUsername = async () => {
 	const username = localStorage.getItem("username");
 
-	console.log(username);
-
+	//checking if username is even set
 	if (username === null || username === undefined || username === "") {
 		return false;
 	}
@@ -23,6 +22,8 @@ const checkCorrectUsername = async () => {
 			withCredentials: true,
 		});
 
+		//checking if session username matches current username
+		//if not, make the user re-login
 		if (res.data.username !== username) {
 			throw Error("wrong user");
 		}
