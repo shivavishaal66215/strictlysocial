@@ -130,7 +130,7 @@ export default class App extends Component {
 					<Route
 						exact
 						path="/changepassword"
-						component={() => <ChangePassword />}
+						component={(routerProps) => <ChangePassword {...routerProps} />}
 					/>
 					<Route
 						path="/friendsinfo/:id"
