@@ -3,6 +3,37 @@ import axios from "axios";
 import "./styles/ChangePassword.css";
 import my_password from "./images/undraw_my_password_d6kg.svg";
 const qs = require("qs");
+
+const checkCorrectUsername = async () => {
+	const username = localStorage.getItem("username");
+
+	//checking if username is even set
+	if (username === null || username === undefined || username === "") {
+		return false;
+	}
+
+	try {
+		const res = await axios({
+			method: "get",
+			url: "/myProfile",
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+
+		//checking if session username matches current username
+		//if not, make the user re-login
+		if (res.data.username !== username) {
+			throw Error("wrong user");
+		}
+	} catch (e) {
+		return false;
+	}
+
+	return true;
+};
+
 export default class ChangePassword extends Component {
 	constructor(props) {
 		super(props);
@@ -71,6 +102,14 @@ export default class ChangePassword extends Component {
 			this.props.setUsername(this.state.username);
 		} catch (e) {
 			console.log(e.message);
+		}
+	}
+
+	async componentDidMount() {
+		const result = await checkCorrectUsername();
+		if (!result) {
+			this.props.history.push("/login");
+			return;
 		}
 	}
 
