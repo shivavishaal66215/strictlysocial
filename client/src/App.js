@@ -30,10 +30,15 @@ export default class App extends Component {
 		this.clearState = this.clearState.bind(this);
 	}
 
-	setUsername(newUsername) {
-		this.setState(() => {
-			return { ...this.state, username: newUsername };
-		});
+	async setUsername(newUsername) {
+		this.setState(
+			() => {
+				return { ...this.state, username: newUsername };
+			},
+			() => {
+				localStorage.setItem("username", this.state.username);
+			}
+		);
 		this.componentDidMount();
 	}
 
@@ -105,15 +110,20 @@ export default class App extends Component {
 						path="/friends"
 						component={(routerProps) => <Friends {...routerProps} />}
 					/>
-					<Route exact path="/explore" component={() => <Explore />} />
+					<Route
+						exact
+						path="/explore"
+						component={(routerProps) => <Explore {...routerProps} />}
+					/>
 					<Route
 						exact
 						path="/profile"
-						component={() => (
+						component={(routerProps) => (
 							<Profile
 								username={this.state.username}
 								email={this.state.email}
 								phone={this.state.phone}
+								{...routerProps}
 							/>
 						)}
 					/>
