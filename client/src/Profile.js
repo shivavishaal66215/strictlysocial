@@ -3,14 +3,45 @@ import axios from "axios";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 import "./styles/Profile.css";
 const qs = require("qs");
+
+const checkCorrectUsername = async () => {
+	const username = localStorage.getItem("username");
+
+	//checking if username is even set
+	if (username === null || username === undefined || username === "") {
+		return false;
+	}
+
+	try {
+		const res = await axios({
+			method: "get",
+			url: "/myProfile",
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+
+		//checking if session username matches current username
+		//if not, make the user re-login
+		if (res.data.username !== username) {
+			throw Error("wrong user");
+		}
+	} catch (e) {
+		return false;
+	}
+
+	return true;
+};
+
 export default class Profile extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			username: this.props.username,
-			email: "",
-			phone: "",
+			email: this.props.email,
+			phone: this.props.phone,
 			newEmail: "",
 			newPhone: "",
 		};
@@ -83,15 +114,12 @@ export default class Profile extends Component {
 			console.log(e);
 		}
 	}
-
-	componentDidMount() {
-		this.setState(() => {
-			return {
-				...this.state,
-				email: this.props.email,
-				phone: this.props.phone,
-			};
-		});
+	async componentDidMount() {
+		const result = await checkCorrectUsername();
+		if (!result) {
+			this.props.history.push("/login");
+			return;
+		}
 	}
 
 	render() {
@@ -100,7 +128,7 @@ export default class Profile extends Component {
 				<div className="Profile-banner">
 					<img className="Profile-avatar" src={avatar} />
 					<div className="Profile-banner-right">
-						<div className="module-heading">{this.state.username}</div>
+						<div className="module-heading">{this.props.username}</div>
 						<div className="Profile-sidebar">
 							<div className="Profile-sidebar-content">Explore</div>
 							<div className="Profile-sidebar-content">Friends</div>
@@ -114,7 +142,7 @@ export default class Profile extends Component {
 						<div className="Profile-subcontent-content">
 							<div className="Profile-current Profile-small-spacing">
 								<div className="underlined">Current Email:</div>
-								<div className="Profile-current-value">{this.state.email}</div>
+								<div className="Profile-current-value">{this.props.email}</div>
 							</div>
 							<div>
 								<label>New Email: </label>
