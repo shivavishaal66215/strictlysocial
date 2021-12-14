@@ -104,7 +104,11 @@ export default class App extends Component {
 					/>
 					<Route exact path="/register" component={() => <Register />} />
 					<Route exact path="/dashboard" component={() => <Dashboard />} />
-					<Route exact path="/interests" component={() => <Interests />} />
+					<Route
+						exact
+						path="/interests"
+						component={(routerProps) => <Interests {...routerProps} />}
+					/>
 					<Route
 						exact
 						path="/friends"
