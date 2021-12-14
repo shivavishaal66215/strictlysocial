@@ -41,6 +41,12 @@
 	background-color: white;
 	font-size: 30px;
 	margin-right: 5%;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.Profile-sidebar-content:visited {
+	text-decoration: none;
 }
 
 .Profile-content {
