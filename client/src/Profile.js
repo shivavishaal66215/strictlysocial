@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 import "./styles/Profile.css";
 const qs = require("qs");
@@ -130,9 +131,15 @@ export default class Profile extends Component {
 					<div className="Profile-banner-right">
 						<div className="module-heading">{this.props.username}</div>
 						<div className="Profile-sidebar">
-							<div className="Profile-sidebar-content">Explore</div>
-							<div className="Profile-sidebar-content">Friends</div>
-							<div className="Profile-sidebar-content">Interests</div>
+							<Link to="/explore" className="Profile-sidebar-content">
+								Explore
+							</Link>
+							<Link to="/friends" className="Profile-sidebar-content">
+								Friends
+							</Link>
+							<Link to="/interests" className="Profile-sidebar-content">
+								Interests
+							</Link>
 						</div>
 					</div>
 				</div>
