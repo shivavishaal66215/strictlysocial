@@ -79,3 +79,8 @@ img {
 .border-bottom {
 	border-bottom: 2px solid black;
 }
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
