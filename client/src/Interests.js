@@ -4,6 +4,36 @@ import "./styles/Interests.css";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
 
+const checkCorrectUsername = async () => {
+	const username = localStorage.getItem("username");
+
+	//checking if username is even set
+	if (username === null || username === undefined || username === "") {
+		return false;
+	}
+
+	try {
+		const res = await axios({
+			method: "get",
+			url: "/myProfile",
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+
+		//checking if session username matches current username
+		//if not, make the user re-login
+		if (res.data.username !== username) {
+			throw Error("wrong user");
+		}
+	} catch (e) {
+		return false;
+	}
+
+	return true;
+};
+
 const startsWithString = (source1, target1) => {
 	if (target1.length > source1.length) {
 		return false;
@@ -113,6 +143,12 @@ export default class Interests extends Component {
 	}
 
 	async componentDidMount() {
+		const result = await checkCorrectUsername();
+		if (!result) {
+			this.props.history.push("/login");
+			return;
+		}
+
 		this._isMounted = true;
 		const res = await fetchInterests();
 		const r = await fetchAllInterests();
