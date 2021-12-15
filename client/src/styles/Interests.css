@@ -1,6 +1,6 @@
 .Interests {
 	background-color: cyan;
-	width: 100%;
+	width: 1200px;
 	height: 100%;
 	display: flex;
 	background-color: rgba(108, 99, 255, 0.28);
@@ -8,7 +8,7 @@
 }
 
 .Interests-leftcontainer {
-	width: 40%;
+	width: 480px;
 	height: 100%;
 	background-color: blue;
 	background-color: rgba(108, 99, 255, 0.2);
@@ -93,7 +93,7 @@
 
 .Interests-rightContainer {
 	padding-top: 200px;
-	width: 60%;
+	width: 720px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

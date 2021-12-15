@@ -1,5 +1,5 @@
 .Login {
-	width: 100%;
+	width: 1200px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -8,7 +8,7 @@
 }
 
 .Login-leftContainer {
-	width: 60%;
+	width: 720px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -17,7 +17,7 @@
 }
 
 .Login-rightContainer {
-	width: 40%;
+	width: 480px;
 	height: 100%;
 	display: inline-flex;
 	flex-direction: column;
@@ -27,8 +27,8 @@
 }
 
 .Login-rightContainer-content {
-	height: 80%;
-	width: 80%;
+	height: 85%;
+	width: 70%;
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
@@ -42,13 +42,4 @@
 	font-size: 24px;
 	width: 90%;
 	text-align: center;
-}
-
-@media only screen and (max-width: 991px) {
-	.Login-leftContainer {
-		display: none;
-	}
-	.Login-rightContainer {
-		width: 100%;
-	}
 }
