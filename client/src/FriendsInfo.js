@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Navbar from "./Navbar";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 import "./styles/Profile.css";
 const qs = require("qs");
@@ -47,6 +48,7 @@ export default class FriendsInfo extends Component {
 	render() {
 		return (
 			<div className="Profile">
+				<Navbar clearState={this.props.clearState} loggedin={true} />
 				<div className="Profile-banner">
 					<img className="Profile-avatar" src={avatar} />
 					<div className="Profile-banner-right">

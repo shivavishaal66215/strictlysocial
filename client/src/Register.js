@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 import "./styles/Register.css";
 import Mobile from "./images/undraw_Mobile_login_re_9ntv.svg";
 const qs = require("qs");
@@ -13,6 +15,7 @@ export default class Register extends Component {
 			username: "",
 			password: "",
 			confirmPassword: "",
+			error: false,
 		};
 
 		this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -60,14 +63,22 @@ export default class Register extends Component {
 				},
 				withCredentials: true,
 			});
+
+			this.setState(() => {
+				return { ...this.state, error: false };
+			});
 		} catch (e) {
-			console.log(e);
+			this.setState(() => {
+				return { ...this.state, error: true };
+			});
+			return;
 		}
 	}
 
 	render() {
 		return (
 			<div className="Register">
+				<Navbar clearState={this.props.clearState} loggedin={false} />
 				<div className="Register-leftContainer">
 					<div className="module-heading large-spacer-vertical">
 						"New phone, who dis?"
@@ -77,6 +88,14 @@ export default class Register extends Component {
 				<div className="Register-rightContainer">
 					<div className="Register-rightContainer-content">
 						<div className="module-heading large-spacer-vertical">Register</div>
+						{this.state.error ? (
+							<div className="large-spacer-vertical error-message">
+								Username already exists or passwords <br />
+								don't match
+							</div>
+						) : (
+							<div></div>
+						)}
 						<div className="Register-content">
 							<div className="large-spacer-vertical">
 								<label htmlFor="username">Username</label>
@@ -106,11 +125,13 @@ export default class Register extends Component {
 								/>
 							</div>
 							<div className="large-spacer-vertical">Forgot Password?</div>
-							<div className="underlined large-spacer-vertical">
-								Don't have an account? Try
-								<br />
-								registering.
-							</div>
+							<Link to="/login">
+								<div className="underlined large-spacer-vertical">
+									Already have an account? Try
+									<br />
+									logging in.
+								</div>
+							</Link>
 						</div>
 						<div>
 							<button className="submit" onClick={this.handleSubmit}>

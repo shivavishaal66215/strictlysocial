@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 import "./styles/Profile.css";
 const qs = require("qs");
@@ -40,9 +41,9 @@ export default class Profile extends Component {
 		super(props);
 
 		this.state = {
-			username: this.props.username,
-			email: this.props.email,
-			phone: this.props.phone,
+			username: "",
+			email: "",
+			phone: "",
 			newEmail: "",
 			newPhone: "",
 		};
@@ -121,11 +122,21 @@ export default class Profile extends Component {
 			this.props.history.push("/login");
 			return;
 		}
+
+		this.setState(() => {
+			return {
+				...this.state,
+				username: this.props.username,
+				email: this.props.email,
+				phone: this.props.phone,
+			};
+		});
 	}
 
 	render() {
 		return (
 			<div className="Profile">
+				<Navbar clearState={this.props.clearState} loggedin={true} />
 				<div className="Profile-banner">
 					<img className="Profile-avatar" src={avatar} />
 					<div className="Profile-banner-right">

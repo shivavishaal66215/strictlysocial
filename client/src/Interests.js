@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Navbar from "./Navbar";
 import "./styles/Interests.css";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
@@ -236,6 +237,7 @@ export default class Interests extends Component {
 	render() {
 		return (
 			<div className="Interests">
+				<Navbar clearState={this.props.clearState} loggedin={true} />
 				<div className="Interests-leftcontainer">
 					<img src={avatar} />
 					<div className="top-line"></div>
@@ -259,6 +261,7 @@ export default class Interests extends Component {
 							);
 						})}
 					</div>
+
 					<div
 						className="submit Interests-button"
 						onClick={this.handleSaveInterests}

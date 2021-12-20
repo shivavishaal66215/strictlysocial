@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
-import Home from "./Home";
 import Navbar from "./Navbar";
-import Dashboard from "./Dashboard";
 import Interests from "./Interests";
 import Friends from "./Friends";
 import Explore from "./Explore";
@@ -92,32 +90,58 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Navbar clearState={this.clearState} />
+				{/* <Navbar clearState={this.clearState} /> */}
 				<Switch>
-					<Route exact path="/" component={() => <Home />} />
+					<Route
+						exact
+						path="/"
+						component={(routerProps) => (
+							<Profile
+								username={this.state.username}
+								email={this.state.email}
+								phone={this.state.phone}
+								{...routerProps}
+								clearState={this.clearState}
+							/>
+						)}
+					/>
 					<Route
 						exact
 						path="/login"
 						component={(routerProps) => (
-							<Login setUsername={this.setUsername} {...routerProps} />
+							<Login
+								setUsername={this.setUsername}
+								{...routerProps}
+								clearState={this.clearState}
+							/>
 						)}
 					/>
-					<Route exact path="/register" component={() => <Register />} />
-					<Route exact path="/dashboard" component={() => <Dashboard />} />
+					<Route
+						exact
+						path="/register"
+						component={() => <Register />}
+						clearState={this.clearState}
+					/>
 					<Route
 						exact
 						path="/interests"
-						component={(routerProps) => <Interests {...routerProps} />}
+						component={(routerProps) => (
+							<Interests {...routerProps} clearState={this.clearState} />
+						)}
 					/>
 					<Route
 						exact
 						path="/friends"
-						component={(routerProps) => <Friends {...routerProps} />}
+						component={(routerProps) => (
+							<Friends {...routerProps} clearState={this.clearState} />
+						)}
 					/>
 					<Route
 						exact
 						path="/explore"
-						component={(routerProps) => <Explore {...routerProps} />}
+						component={(routerProps) => (
+							<Explore {...routerProps} clearState={this.clearState} />
+						)}
 					/>
 					<Route
 						exact
@@ -128,18 +152,25 @@ export default class App extends Component {
 								email={this.state.email}
 								phone={this.state.phone}
 								{...routerProps}
+								clearState={this.clearState}
 							/>
 						)}
 					/>
 					<Route
 						exact
 						path="/changepassword"
-						component={(routerProps) => <ChangePassword {...routerProps} />}
+						component={(routerProps) => (
+							<ChangePassword {...routerProps} clearState={this.clearState} />
+						)}
 					/>
 					<Route
 						path="/friendsinfo/:id"
 						component={(routeProps) => (
-							<FriendsInfo username={this.state.username} {...routeProps} />
+							<FriendsInfo
+								username={this.state.username}
+								{...routeProps}
+								clearState={this.clearState}
+							/>
 						)}
 					/>
 				</Switch>

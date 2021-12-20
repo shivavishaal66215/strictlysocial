@@ -29,15 +29,28 @@ export default class Navbar extends Component {
 	render() {
 		return (
 			<div className="Navbar">
-				<Link to="/">Home</Link>
-				<Link to="/login">Login</Link>
-				<Link to="/register">Register</Link>
-				<Link to="/interests">Interests</Link>
-				<Link to="/friends">Friends</Link>
-				<Link to="/explore">Explore</Link>
-				<Link to="/profile">Profile</Link>
-				<Link to="/changepassword">ChangePassword</Link>
-				<button onClick={this.handleLogout}>Logout</button>
+				{!this.props.loggedin ? (
+					<span className="Navbar-items">
+						<Link to="/login" className="Navbar-item">
+							Login
+						</Link>
+						<Link to="/register" className="Navbar-item">
+							Register
+						</Link>
+					</span>
+				) : (
+					<span className="Navbar-items">
+						<Link to="/" className="Navbar-item">
+							Profile
+						</Link>
+						<Link to="/changepassword" className="Navbar-item">
+							ChangePassword
+						</Link>
+						<span onClick={this.handleLogout} className="Navbar-item logout">
+							Logout
+						</span>
+					</span>
+				)}
 			</div>
 		);
 	}

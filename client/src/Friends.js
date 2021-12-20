@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Navbar from "./Navbar";
 import "./styles/Friends.css";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 const qs = require("qs");
@@ -288,6 +289,7 @@ export default class Friends extends Component {
 			<div className="Friends">
 				<div className="module-heading">Friends</div>
 				<div className="Friends-items">
+					<Navbar clearState={this.props.clearState} loggedin={true} />
 					{this.state.friends.map((ele) => {
 						return (
 							<div key={ele} className="Friends-single-item">

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Navbar from "./Navbar";
 import explore from "./images/undraw_Explore_re_8l4v.svg";
 import avatar from "./images/undraw_male_avatar_323b.svg";
 import "./styles/Explore.css";
@@ -120,6 +121,7 @@ export default class Discovery extends Component {
 	render() {
 		return (
 			<div className="Explore">
+				<Navbar clearState={this.props.clearState} loggedin={true} />
 				<div className="Explore-leftcontainer">
 					<div className="module-heading large-spacer-vertical">Explore</div>
 					<img className="Explore-img" src={explore} />

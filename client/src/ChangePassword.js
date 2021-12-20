@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./styles/ChangePassword.css";
 import my_password from "./images/undraw_my_password_d6kg.svg";
+import Navbar from "./Navbar";
 const qs = require("qs");
 
 const checkCorrectUsername = async () => {
@@ -116,6 +117,7 @@ export default class ChangePassword extends Component {
 	render() {
 		return (
 			<div className="ChangePassword">
+				<Navbar clearState={this.props.clearState} loggedin={true} />
 				<div className="ChangePassword-rightContainer">
 					<div className="ChangePassword-rightContainer-content">
 						<div className="module-heading large-spacer-vertical">Password</div>

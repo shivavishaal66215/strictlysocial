@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 import fingerprint from "./images/undraw_Fingerprint_re_uf3f.svg";
 import "./styles/Login.css";
 const qs = require("qs");
@@ -10,6 +12,7 @@ export default class Login extends Component {
 		this.state = {
 			username: "",
 			password: "",
+			error: false,
 		};
 
 		this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -44,16 +47,26 @@ export default class Login extends Component {
 				withCredentials: true,
 			});
 
-			await this.props.setUsername(this.state.username);
-			this.props.history.push("/profile");
+			this.setState(
+				() => {
+					return { ...this.state, error: false };
+				},
+				async () => {
+					await this.props.setUsername(this.state.username);
+					this.props.history.push("/profile");
+				}
+			);
 		} catch (e) {
-			console.log("Wrong username/password");
+			this.setState(() => {
+				return { ...this.state, error: true };
+			});
 		}
 	}
 
 	render() {
 		return (
 			<div className="Login">
+				<Navbar clearState={this.props.clearState} loggedin={false} />
 				<div className="Login-leftContainer">
 					<div className="module-heading large-spacer-vertical">
 						You know what to do...
@@ -63,6 +76,13 @@ export default class Login extends Component {
 				<div className="Login-rightContainer">
 					<div className="Login-rightContainer-content">
 						<div className="module-heading large-spacer-vertical">Login</div>
+						{this.state.error ? (
+							<div className="large-spacer-vertical error-message">
+								Invalid Credentials
+							</div>
+						) : (
+							<div></div>
+						)}
 						<div className="Login-content">
 							<div className="large-spacer-vertical">
 								<label htmlFor="username">Username</label>
@@ -83,11 +103,13 @@ export default class Login extends Component {
 								/>
 							</div>
 							<div className="large-spacer-vertical">Forgot Password?</div>
-							<div className="underlined large-spacer-vertical">
-								Don't have an account? Try
-								<br />
-								registering.
-							</div>
+							<Link to="/register">
+								<div className="underlined large-spacer-vertical">
+									Don't have an account? Try
+									<br />
+									registering.
+								</div>
+							</Link>
 						</div>
 						<div>
 							<button className="submit" onClick={this.handleLogin}>
