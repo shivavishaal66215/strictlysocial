@@ -288,8 +288,8 @@ export default class Friends extends Component {
 		return (
 			<div className="Friends">
 				<div className="module-heading">Friends</div>
+				<Navbar clearState={this.props.clearState} loggedin={true} />
 				<div className="Friends-items">
-					<Navbar clearState={this.props.clearState} loggedin={true} />
 					{this.state.friends.map((ele) => {
 						return (
 							<div key={ele} className="Friends-single-item">

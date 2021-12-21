@@ -66,7 +66,6 @@ export default class Login extends Component {
 	render() {
 		return (
 			<div className="Login">
-				<Navbar clearState={this.props.clearState} loggedin={false} />
 				<div className="Login-leftContainer">
 					<div className="module-heading large-spacer-vertical">
 						You know what to do...
@@ -74,6 +73,7 @@ export default class Login extends Component {
 					<img src={fingerprint}></img>
 				</div>
 				<div className="Login-rightContainer">
+					<Navbar clearState={this.props.clearState} loggedin={false} />
 					<div className="Login-rightContainer-content">
 						<div className="module-heading large-spacer-vertical">Login</div>
 						{this.state.error ? (

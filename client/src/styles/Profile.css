@@ -7,6 +7,7 @@
 	align-items: center;
 	flex-direction: column;
 	background-color: rgba(108, 99, 255, 0.28);
+	position: relative;
 }
 
 .Profile-banner {

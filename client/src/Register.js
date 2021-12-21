@@ -78,7 +78,6 @@ export default class Register extends Component {
 	render() {
 		return (
 			<div className="Register">
-				<Navbar clearState={this.props.clearState} loggedin={false} />
 				<div className="Register-leftContainer">
 					<div className="module-heading large-spacer-vertical">
 						"New phone, who dis?"
@@ -86,6 +85,7 @@ export default class Register extends Component {
 					<img src={Mobile}></img>
 				</div>
 				<div className="Register-rightContainer">
+					<Navbar clearState={this.props.clearState} loggedin={false} />
 					<div className="Register-rightContainer-content">
 						<div className="module-heading large-spacer-vertical">Register</div>
 						{this.state.error ? (

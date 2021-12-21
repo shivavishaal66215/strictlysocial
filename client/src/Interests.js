@@ -237,7 +237,6 @@ export default class Interests extends Component {
 	render() {
 		return (
 			<div className="Interests">
-				<Navbar clearState={this.props.clearState} loggedin={true} />
 				<div className="Interests-leftcontainer">
 					<img src={avatar} />
 					<div className="top-line"></div>
@@ -270,6 +269,7 @@ export default class Interests extends Component {
 					</div>
 				</div>
 				<div className="Interests-rightContainer">
+					<Navbar clearState={this.props.clearState} loggedin={true} />
 					<div className="module-heading Interests-rightContainer-heading small-spacer-vertical">
 						Interests
 					</div>
