@@ -119,7 +119,7 @@ export default class App extends Component {
 					<Route
 						exact
 						path="/register"
-						component={() => <Register />}
+						component={(router) => <Register {...router} />}
 						clearState={this.clearState}
 					/>
 					<Route

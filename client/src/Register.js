@@ -64,9 +64,14 @@ export default class Register extends Component {
 				withCredentials: true,
 			});
 
-			this.setState(() => {
-				return { ...this.state, error: false };
-			});
+			this.setState(
+				() => {
+					return { ...this.state, error: false };
+				},
+				() => {
+					this.props.history.push("/profile");
+				}
+			);
 		} catch (e) {
 			this.setState(() => {
 				return { ...this.state, error: true };
