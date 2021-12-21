@@ -64,6 +64,7 @@ router.use(authenticate);
 //doesnt include existing friends
 //doesnt include existing outgoing requests
 //doesnt including existing incoming requests
+//replace this search with api call to recommender once dataset is configured. [wont be done for now]
 router.post("/search", async (req, res) => {
 	const username = req.session.username;
 	try {
