@@ -62,4 +62,6 @@ const interests = [
 	"Pets",
 ];
 
+interests.sort();
+
 module.exports = interests;
