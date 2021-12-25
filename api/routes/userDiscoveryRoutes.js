@@ -3,7 +3,24 @@ const router = express.Router();
 const UserInterest = require("../models/UserInterest");
 const UserSocial = require("../models/UserSocial");
 const UserFriendship = require("../models/UserFriendship");
+const axios = require("axios");
+const qs = require("qs");
 require("dotenv").config();
+
+const makeCSV = (arr) => {
+	result = "";
+	if (arr.length == 0) {
+		return result;
+	}
+
+	for (let i = 0; i < arr.length - 1; i++) {
+		result += arr[i];
+		result += ",";
+	}
+
+	result += arr[arr.length - 1];
+	return result;
+};
 
 //returns true if target is found inside arr
 const isPresent = function (arr, target) {
@@ -68,25 +85,31 @@ router.use(authenticate);
 router.post("/search", async (req, res) => {
 	const username = req.session.username;
 	try {
-		let user = await UserInterest.findOne({ username: username });
-		const interests_arr = user.interests;
-
-		//find all users that have atleast the mentioned interests
-		const users = await UserInterest.find({});
-		let result_users = retValidUsers(users, interests_arr);
-		result_users = result_users.filter((ele) => {
-			return ele !== username;
-		});
-
-		user = await UserFriendship.findOne({ username: username });
+		const user = await UserFriendship.findOne({ username: username });
 		let friends = user.friends;
 		let outgoingrequests = user.outgoingrequests;
 		let incomingrequests = user.incomingrequests;
-		result_users = setSubtraction(result_users, friends);
-		result_users = setSubtraction(result_users, outgoingrequests);
-		result_users = setSubtraction(result_users, incomingrequests);
 
-		res.status(200).send(result_users);
+		let blacklist = makeCSV([
+			...friends,
+			...outgoingrequests,
+			...incomingrequests,
+		]);
+
+		blacklist += ",vishaal";
+		const result = await axios({
+			method: "get",
+			url: "http://127.0.0.1:5000/recommend", //insert URL for flask API here
+			data: qs.stringify({
+				userid: username,
+				blacklist: blacklist,
+			}),
+			headers: {
+				"content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+			withCredentials: true,
+		});
+		res.status(200).send(result.data);
 	} catch (e) {
 		console.log(e);
 		res.status(500).send([]);
