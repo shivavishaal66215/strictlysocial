@@ -47,7 +47,8 @@ const fetchRecommendations = async () => {
 			withCredentials: true,
 		});
 		if (res.status === 200) {
-			return res.data;
+			console.log(res.data.data);
+			return res.data.data;
 		}
 
 		throw new Error("recommendations cannot be fetched now");
@@ -138,6 +139,7 @@ export default class Discovery extends Component {
 				</div>
 				<div className="Explore-rightcontainer">
 					<div className="Explore-recommendationscontainer">
+						{console.log(this.state.recommendations)}
 						{this.state.recommendations.map((ele) => {
 							return (
 								<div key={ele} className="Explore-recommendation">
