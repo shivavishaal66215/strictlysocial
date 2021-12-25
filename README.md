@@ -20,4 +20,6 @@ Run the seedInterests.js file to create the global interests collection. At this
 ## What does the future look like for this app?
 The next iteration of this app will have a chat-system built in so that users do not have to resort to external communication mediums like email and phone.
 
+Some form of multi-threading can be implemented in the future to scale up. 
+
 [Will add screenshots of the client-side in some time]
