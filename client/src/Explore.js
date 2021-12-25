@@ -47,7 +47,6 @@ const fetchRecommendations = async () => {
 			withCredentials: true,
 		});
 		if (res.status === 200) {
-			console.log(res.data.data);
 			return res.data.data;
 		}
 
